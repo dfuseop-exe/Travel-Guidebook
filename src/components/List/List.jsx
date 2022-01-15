@@ -4,10 +4,9 @@ import useStyles from './styles';
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
 
-const List = ({places , childCliked , isLoading}) => {
+const List = ({places , childCliked , isLoading , type ,setType , rating , setRating}) => {
 
-    const [type, setType] = useState("restaurants");
-    const [rating, setRating] = useState("");
+    
     const [elRefs, setElRefs] = useState([])
 
     useEffect(() => {
@@ -36,7 +35,7 @@ const List = ({places , childCliked , isLoading}) => {
                 <FormControl className={classes.formControl}>
                     <InputLabel>Rating</InputLabel>
                     <Select value={rating} onChange={(e)=>{setRating(e.target.value)}}>
-                        <MenuItem value={0}>All</MenuItem>
+                        <MenuItem value={0} selected>All</MenuItem>
                         <MenuItem value={3.0}>Above 3.0</MenuItem>
                         <MenuItem value={4.0}>Above 4.0</MenuItem>
                         <MenuItem value={4.5}>Above 4.5</MenuItem>
