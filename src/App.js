@@ -1,6 +1,6 @@
 import { CssBaseline, Grid } from '@material-ui/core';
 import react , {useEffect , useState} from 'react'
-import {getPlacesData} from './api'
+import {getPlacesData , getWeatherData} from './api'
 
 //Components
 import Header from './components/Header/Header';
@@ -13,6 +13,7 @@ import PlaceDetails from './components/PlaceDetails/PlaceDetails';
 
 const App = ()=> {
 
+  const [weatherData, setWeatherData] = useState([]);
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
@@ -32,17 +33,27 @@ const App = ()=> {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true);
     const filtered = places.filter((place) => Number(place.rating) > rating);
-
+    setIsLoading(false);
     setFilteredPlaces(filtered);
+    
   }, [rating]);
   
 
   useEffect(() => {
 
     try {
+      setIsLoading(true);
       if(bounds){
         setIsLoading(true);
+
+      const Fetchweather =  async () => {
+        const data = await getWeatherData(coordinates.lat , coordinates.lng);
+        setWeatherData(data);
+      }
+
+      Fetchweather();
       const fetchData = async() => {
         const data = await getPlacesData(type ,bounds.sw, bounds.ne);
         setIsLoading(false);
@@ -82,6 +93,8 @@ const App = ()=> {
                coordinates={coordinates}
                places={filteredPlaces.length ? filteredPlaces : places}
                setChildCliked={setChildCliked}
+               weatherData={weatherData}
+               
           />
         </Grid>
       </Grid>

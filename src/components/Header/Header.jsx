@@ -22,11 +22,11 @@ const Header = ({setCoordinates}) => {
     const classes = useStyles();
 
     return (
-       <AppBar position="static" styles={{backgroundColor: "#1a73e8" ,
+       <AppBar position="sticky" styles={{backgroundColor: "#06d6a0" ,
        height: "39px"}}>
-           <Toolbar className={classes.toolbar} >
+           <Toolbar className={classes.toolbar}  >
                 <Typography variant="h5" className={classes.title}>
-                    Travel Advisor
+                    Travel Guidebook
                 </Typography>
                 <Box display="flex">
                     <Typography variant="h6" className={classes.title}>

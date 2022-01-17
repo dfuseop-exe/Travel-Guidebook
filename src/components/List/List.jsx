@@ -15,8 +15,9 @@ const List = ({places , childCliked , isLoading , type ,setType , rating , setRa
 
     const classes = useStyles();
     return (
-        <div className={classes.container}>
-            <Typography variant='h4'>Restaurants , Hotels & Attractions around you</Typography>
+        <div className={classes.container} >
+            <Typography style={{fontFamily : 'Montserrat' }} variant='h4'>
+                <span style={{color : "#7b2cbf"  , fontWeight : 'bold'}}>Explore</span> Restaurants , Hotels & Attractions Around You .</Typography>
             {isLoading ? (
                 <div className={classes.loading}>
                     <CircularProgress size="5rem"/>
